@@ -58,8 +58,10 @@
             // 
             this.MK.Location = new System.Drawing.Point(352, 177);
             this.MK.Name = "MK";
+            this.MK.PasswordChar = '*';
             this.MK.Size = new System.Drawing.Size(220, 20);
             this.MK.TabIndex = 2;
+            this.MK.TextChanged += new System.EventHandler(this.MK_TextChanged);
             // 
             // label2
             // 
@@ -82,7 +84,7 @@
             this.DN.TabIndex = 0;
             this.DN.Text = "Đăng nhập";
             this.DN.UseVisualStyleBackColor = false;
-            this.DN.Click += new System.EventHandler(this.button1_Click);
+            this.DN.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
             // Form1
             // 

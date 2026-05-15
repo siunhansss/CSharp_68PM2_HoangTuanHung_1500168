@@ -38,7 +38,7 @@ namespace Quanlysinhvien
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDangNhap_Click(object sender, EventArgs e)
         {
             string email = EM.Text;
             string password = MK.Text;
@@ -49,12 +49,20 @@ namespace Quanlysinhvien
             if (email == emailSV && password == mssv)
             {
                 MessageBox.Show("Đăng nhập thành công");
+
+                Form Addsinhvien = new Addsinhvien();
+                Addsinhvien.Show();
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Đăng nhập thất bại");
-
             }
+        }
+
+        private void MK_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
