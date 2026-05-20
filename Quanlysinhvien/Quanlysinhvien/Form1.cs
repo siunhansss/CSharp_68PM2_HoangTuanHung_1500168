@@ -50,8 +50,9 @@ namespace Quanlysinhvien
             {
                 MessageBox.Show("Đăng nhập thành công");
 
-                Form Addsinhvien = new Addsinhvien();
-                Addsinhvien.Show();
+                Main main = new Main();
+                main.Show();
+
                 this.Hide();
             }
             else
