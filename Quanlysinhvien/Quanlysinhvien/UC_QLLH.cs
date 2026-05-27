@@ -12,6 +12,8 @@ namespace Quanlysinhvien
 {
     public partial class UC_QLLH : UserControl
     {
+        QuanLySinhVienEntities2 db =
+            new QuanLySinhVienEntities2();
         public UC_QLLH()
         {
             InitializeComponent();
@@ -19,7 +21,12 @@ namespace Quanlysinhvien
 
         private void UC_QLLH_Load(object sender, EventArgs e)
         {
-
+            LoadLopHoc();
+        }
+        void LoadLopHoc()
+        {
+            dgvLopHoc.DataSource =
+                db.Classes.ToList();
         }
     }
 }
