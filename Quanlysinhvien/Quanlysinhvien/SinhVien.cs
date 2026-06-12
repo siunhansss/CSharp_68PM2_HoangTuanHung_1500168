@@ -12,14 +12,14 @@ namespace Quanlysinhvien
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class SinhVien
     {
-        public string MSSV { get; set; }
-        public string FullName { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
-        public string Gender { get; set; }
-        public string ClassId { get; set; }
+        public string MaSV { get; set; }
+        public string HoTen { get; set; }
+        public string GioiTinh { get; set; }
+        public Nullable<System.DateTime> NgaySinh { get; set; }
+        public string MaLop { get; set; }
     
-        public virtual Class Class { get; set; }
+        public virtual Lop Lop { get; set; }
     }
 }

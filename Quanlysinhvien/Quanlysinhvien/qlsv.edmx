@@ -5,44 +5,43 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="QuanLySinhVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Classes">
+        <EntityType Name="Lop">
           <Key>
-            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="MaLop" />
           </Key>
-          <Property Name="ClassId" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+          <Property Name="ID" Type="int" />
+          <Property Name="MaLop" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="100" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="Students">
+        <EntityType Name="SinhVien">
           <Key>
-            <PropertyRef Name="MSSV" />
+            <PropertyRef Name="MaSV" />
           </Key>
-          <Property Name="MSSV" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DateOfBirth" Type="date" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
-          <Property Name="ClassId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaSV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="MaLop" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <Association Name="FK_Students_Classes">
-          <End Role="Classes" Type="Self.Classes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+        <Association Name="FK__SinhVien__MaLop__3F466844">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Classes">
-              <PropertyRef Name="ClassId" />
+            <Principal Role="Lop">
+              <PropertyRef Name="MaLop" />
             </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="ClassId" />
+            <Dependent Role="SinhVien">
+              <PropertyRef Name="MaLop" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QuanLySinhVienModelStoreContainer">
-          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Students_Classes" Association="Self.FK_Students_Classes">
-            <End Role="Classes" EntitySet="Classes" />
-            <End Role="Students" EntitySet="Students" />
+          <EntitySet Name="Lop" EntityType="Self.Lop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SinhVien__MaLop__3F466844" Association="Self.FK__SinhVien__MaLop__3F466844">
+            <End Role="Lop" EntitySet="Lop" />
+            <End Role="SinhVien" EntitySet="SinhVien" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -50,46 +49,45 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLySinhVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Class">
+        <EntityType Name="Lop">
           <Key>
-            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="MaLop" />
           </Key>
-          <Property Name="ClassId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Classes" FromRole="Classes" ToRole="Students" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="MaLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenLop" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SinhViens" Relationship="Self.FK__SinhVien__MaLop__3F466844" FromRole="Lop" ToRole="SinhVien" />
         </EntityType>
-        <EntityType Name="Student">
+        <EntityType Name="SinhVien">
           <Key>
-            <PropertyRef Name="MSSV" />
+            <PropertyRef Name="MaSV" />
           </Key>
-          <Property Name="MSSV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClassId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Class" Relationship="Self.FK_Students_Classes" FromRole="Students" ToRole="Classes" />
+          <Property Name="MaSV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="MaLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lop" Relationship="Self.FK__SinhVien__MaLop__3F466844" FromRole="SinhVien" ToRole="Lop" />
         </EntityType>
-        <Association Name="FK_Students_Classes">
-          <End Role="Classes" Type="Self.Class" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+        <Association Name="FK__SinhVien__MaLop__3F466844">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Classes">
-              <PropertyRef Name="ClassId" />
+            <Principal Role="Lop">
+              <PropertyRef Name="MaLop" />
             </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="ClassId" />
+            <Dependent Role="SinhVien">
+              <PropertyRef Name="MaLop" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLySinhVienEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Classes" EntityType="Self.Class" />
-          <EntitySet Name="Students" EntityType="Self.Student" />
-          <AssociationSet Name="FK_Students_Classes" Association="Self.FK_Students_Classes">
-            <End Role="Classes" EntitySet="Classes" />
-            <End Role="Students" EntitySet="Students" />
+        <EntityContainer Name="QuanLySinhVienEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lops" EntityType="Self.Lop" />
+          <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
+          <AssociationSet Name="FK__SinhVien__MaLop__3F466844" Association="Self.FK__SinhVien__MaLop__3F466844">
+            <End Role="Lop" EntitySet="Lops" />
+            <End Role="SinhVien" EntitySet="SinhViens" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -97,24 +95,25 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLySinhVienModelStoreContainer" CdmEntityContainer="QuanLySinhVienEntities2">
-          <EntitySetMapping Name="Classes">
-            <EntityTypeMapping TypeName="QuanLySinhVienModel.Class">
-              <MappingFragment StoreEntitySet="Classes">
-                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
-                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
+        <EntityContainerMapping StorageEntityContainer="QuanLySinhVienModelStoreContainer" CdmEntityContainer="QuanLySinhVienEntities">
+          <EntitySetMapping Name="Lops">
+            <EntityTypeMapping TypeName="QuanLySinhVienModel.Lop">
+              <MappingFragment StoreEntitySet="Lop">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="QuanLySinhVienModel.Student">
-              <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="MSSV" ColumnName="MSSV" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <EntitySetMapping Name="SinhViens">
+            <EntityTypeMapping TypeName="QuanLySinhVienModel.SinhVien">
+              <MappingFragment StoreEntitySet="SinhVien">
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,19 +12,20 @@ namespace Quanlysinhvien
     using System;
     using System.Collections.Generic;
     
-    public partial class Class
+    public partial class Lop
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Class()
+        public Lop()
         {
-            this.Students = new HashSet<Student>();
+            this.SinhViens = new HashSet<SinhVien>();
         }
     
-        public string ClassId { get; set; }
-        public string ClassName { get; set; }
-        public string Note { get; set; }
+        public Nullable<int> ID { get; set; }
+        public string MaLop { get; set; }
+        public string TenLop { get; set; }
+        public string GhiChu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<SinhVien> SinhViens { get; set; }
     }
 }

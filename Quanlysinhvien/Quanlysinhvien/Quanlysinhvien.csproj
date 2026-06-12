@@ -58,14 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class.cs">
-      <DependentUpon>qlsv.tt</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lop.cs">
+      <DependentUpon>QLSV.tt</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -75,23 +75,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="qlsv.Context.cs">
+    <Compile Include="QLSV.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>qlsv.Context.tt</DependentUpon>
+      <DependentUpon>QLSV.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="qlsv.cs">
+    <Compile Include="QLSV.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>qlsv.tt</DependentUpon>
+      <DependentUpon>QLSV.tt</DependentUpon>
     </Compile>
-    <Compile Include="qlsv.Designer.cs">
+    <Compile Include="QLSV.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>qlsv.edmx</DependentUpon>
+      <DependentUpon>QLSV.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Student.cs">
-      <DependentUpon>qlsv.tt</DependentUpon>
+    <Compile Include="SinhVien.cs">
+      <DependentUpon>QLSV.tt</DependentUpon>
     </Compile>
     <Compile Include="UC_QLLH.cs">
       <SubType>UserControl</SubType>
@@ -126,6 +126,7 @@
     <EmbeddedResource Include="UC_QLSV.resx">
       <DependentUpon>UC_QLSV.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,30 +137,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="qlsv.edmx">
+    <EntityDeploy Include="QLSV.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>qlsv.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLSV.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="qlsv.edmx.diagram">
-      <DependentUpon>qlsv.edmx</DependentUpon>
+    <None Include="QLSV.edmx.diagram">
+      <DependentUpon>QLSV.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="qlsv.Context.tt">
+    <Content Include="QLSV.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>qlsv.edmx</DependentUpon>
-      <LastGenOutput>qlsv.Context.cs</LastGenOutput>
+      <DependentUpon>QLSV.edmx</DependentUpon>
+      <LastGenOutput>QLSV.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="qlsv.tt">
+    <Content Include="QLSV.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>qlsv.edmx</DependentUpon>
-      <LastGenOutput>qlsv.cs</LastGenOutput>
+      <DependentUpon>QLSV.edmx</DependentUpon>
+      <LastGenOutput>QLSV.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

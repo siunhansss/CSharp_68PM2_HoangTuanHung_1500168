@@ -36,29 +36,29 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dgvLopHoc = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.dgvClass = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.txtTenLop = new System.Windows.Forms.TextBox();
+            this.txtMaLop = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLopHoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button9
             // 
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(704, 534);
+            this.button9.Location = new System.Drawing.Point(697, 534);
             this.button9.Margin = new System.Windows.Forms.Padding(2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(55, 55);
@@ -91,7 +91,7 @@
             // button12
             // 
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Location = new System.Drawing.Point(356, 534);
+            this.button12.Location = new System.Drawing.Point(362, 534);
             this.button12.Margin = new System.Windows.Forms.Padding(2);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(55, 55);
@@ -146,41 +146,44 @@
             this.button6.Text = "Xóa";
             this.button6.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnUpdate
             // 
-            this.button5.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button5.Location = new System.Drawing.Point(152, 400);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(132, 45);
-            this.button5.TabIndex = 26;
-            this.button5.Text = "Sửa";
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnUpdate.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnUpdate.Location = new System.Drawing.Point(152, 400);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(132, 45);
+            this.btnUpdate.TabIndex = 26;
+            this.btnUpdate.Text = "Sửa";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // button4
+            // btnAdd
             // 
-            this.button4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button4.Location = new System.Drawing.Point(8, 400);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(132, 45);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Thêm";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnAdd.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnAdd.Location = new System.Drawing.Point(8, 400);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(132, 45);
+            this.btnAdd.TabIndex = 25;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dgvLopHoc
+            // dgvClass
             // 
-            this.dgvLopHoc.AllowUserToOrderColumns = true;
-            this.dgvLopHoc.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvLopHoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLopHoc.Location = new System.Drawing.Point(303, 86);
-            this.dgvLopHoc.Name = "dgvLopHoc";
-            this.dgvLopHoc.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvLopHoc.RowHeadersVisible = false;
-            this.dgvLopHoc.Size = new System.Drawing.Size(672, 443);
-            this.dgvLopHoc.TabIndex = 24;
+            this.dgvClass.AllowUserToOrderColumns = true;
+            this.dgvClass.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClass.Location = new System.Drawing.Point(303, 86);
+            this.dgvClass.Name = "dgvClass";
+            this.dgvClass.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvClass.RowHeadersVisible = false;
+            this.dgvClass.Size = new System.Drawing.Size(672, 443);
+            this.dgvClass.TabIndex = 24;
+            this.dgvClass.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClass_CellClick);
             // 
             // button3
             // 
@@ -215,10 +218,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtGhiChu);
+            this.groupBox1.Controls.Add(this.txtTenLop);
+            this.groupBox1.Controls.Add(this.txtMaLop);
+            this.groupBox1.Controls.Add(this.txtID);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -231,33 +234,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lớp học";
             // 
-            // textBox4
+            // txtGhiChu
             // 
-            this.textBox4.Location = new System.Drawing.Point(19, 256);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(230, 20);
-            this.textBox4.TabIndex = 8;
+            this.txtGhiChu.Location = new System.Drawing.Point(19, 256);
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(230, 20);
+            this.txtGhiChu.TabIndex = 8;
             // 
-            // textBox3
+            // txtTenLop
             // 
-            this.textBox3.Location = new System.Drawing.Point(19, 188);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(230, 20);
-            this.textBox3.TabIndex = 7;
+            this.txtTenLop.Location = new System.Drawing.Point(19, 188);
+            this.txtTenLop.Name = "txtTenLop";
+            this.txtTenLop.Size = new System.Drawing.Size(230, 20);
+            this.txtTenLop.TabIndex = 7;
             // 
-            // textBox2
+            // txtMaLop
             // 
-            this.textBox2.Location = new System.Drawing.Point(19, 106);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(230, 20);
-            this.textBox2.TabIndex = 6;
+            this.txtMaLop.Location = new System.Drawing.Point(19, 106);
+            this.txtMaLop.Name = "txtMaLop";
+            this.txtMaLop.Size = new System.Drawing.Size(230, 20);
+            this.txtMaLop.TabIndex = 6;
             // 
-            // textBox1
+            // txtID
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 20);
-            this.textBox1.TabIndex = 4;
+            this.txtID.Location = new System.Drawing.Point(19, 45);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(230, 20);
+            this.txtID.TabIndex = 4;
             // 
             // label5
             // 
@@ -311,9 +314,9 @@
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.dgvLopHoc);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.dgvClass);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label6);
@@ -321,7 +324,7 @@
             this.Name = "UC_QLLH";
             this.Size = new System.Drawing.Size(1100, 708);
             this.Load += new System.EventHandler(this.UC_QLLH_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLopHoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -339,17 +342,17 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridView dgvLopHoc;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridView dgvClass;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.TextBox txtTenLop;
+        private System.Windows.Forms.TextBox txtMaLop;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

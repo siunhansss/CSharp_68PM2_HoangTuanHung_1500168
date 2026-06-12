@@ -13,10 +13,10 @@ namespace Quanlysinhvien
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLySinhVienEntities2 : DbContext
+    public partial class QuanLySinhVienEntities : DbContext
     {
-        public QuanLySinhVienEntities2()
-            : base("name=QuanLySinhVienEntities2")
+        public QuanLySinhVienEntities()
+            : base("name=QuanLySinhVienEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace Quanlysinhvien
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Class> Classes { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Lop> Lops { get; set; }
+        public virtual DbSet<SinhVien> SinhViens { get; set; }
     }
 }
