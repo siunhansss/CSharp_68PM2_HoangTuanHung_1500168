@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblPage = new System.Windows.Forms.Label();
             this.dgvSinhVien = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btbReset = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btbAdd = new System.Windows.Forms.Button();
@@ -56,25 +56,27 @@
             this.grb1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button5
+            // btnSearch
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(642, 31);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(119, 41);
-            this.button5.TabIndex = 35;
-            this.button5.Text = "Tìm";
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(642, 31);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(119, 41);
+            this.btnSearch.TabIndex = 35;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // textBox5
+            // txtSearch
             // 
-            this.textBox5.Location = new System.Drawing.Point(311, 38);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(325, 20);
-            this.textBox5.TabIndex = 34;
+            this.txtSearch.Location = new System.Drawing.Point(311, 38);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(325, 20);
+            this.txtSearch.TabIndex = 34;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label5
             // 
@@ -96,6 +98,7 @@
             this.button8.TabIndex = 32;
             this.button8.Text = ">";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // button9
             // 
@@ -107,6 +110,7 @@
             this.button9.TabIndex = 31;
             this.button9.Text = ">>";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // button7
             // 
@@ -118,6 +122,7 @@
             this.button7.TabIndex = 30;
             this.button7.Text = "<<";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // button6
             // 
@@ -129,17 +134,18 @@
             this.button6.TabIndex = 29;
             this.button6.Text = "<";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnPrev_Click);
             // 
-            // label6
+            // lblPage
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(529, 541);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 13);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Trang 1/1 | 3 bản ghi";
+            this.lblPage.AutoSize = true;
+            this.lblPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPage.Location = new System.Drawing.Point(529, 541);
+            this.lblPage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(107, 13);
+            this.lblPage.TabIndex = 28;
+            this.lblPage.Text = "Trang 1/1 | 3 bản ghi";
             // 
             // dgvSinhVien
             // 
@@ -155,18 +161,19 @@
             this.dgvSinhVien.TabIndex = 27;
             this.dgvSinhVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSinhVien_CellClick);
             // 
-            // button4
+            // btbReset
             // 
-            this.button4.BackColor = System.Drawing.Color.LightSlateGray;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(162, 492);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 41);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "Làm mới";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btbReset.BackColor = System.Drawing.Color.LightSlateGray;
+            this.btbReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btbReset.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btbReset.Location = new System.Drawing.Point(162, 492);
+            this.btbReset.Margin = new System.Windows.Forms.Padding(2);
+            this.btbReset.Name = "btbReset";
+            this.btbReset.Size = new System.Drawing.Size(122, 41);
+            this.btbReset.TabIndex = 26;
+            this.btbReset.Text = "Làm mới";
+            this.btbReset.UseVisualStyleBackColor = false;
+            this.btbReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // button3
             // 
@@ -353,16 +360,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblPage);
             this.Controls.Add(this.dgvSinhVien);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btbReset);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btbAdd);
@@ -380,16 +387,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPage;
         private System.Windows.Forms.DataGridView dgvSinhVien;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btbReset;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btbAdd;

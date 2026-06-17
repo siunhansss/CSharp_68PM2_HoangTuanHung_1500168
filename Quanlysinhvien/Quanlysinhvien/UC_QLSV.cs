@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,10 @@ namespace Quanlysinhvien
 {
     public partial class UC_QLSV : UserControl
     {
+        int pageSize = 5;        
+        int currentPage = 1;     
+        int totalPage = 1;       
+        List<dynamic> dataList;  
         string maSVCu = "";
         QuanLySinhVienEntities db =
             new QuanLySinhVienEntities();
@@ -35,25 +40,42 @@ namespace Quanlysinhvien
 
         void LoadSinhVien()
         {
-            var ds = from sv in db.SinhViens
-                     join lop in db.Lops
-                     on sv.MaLop equals lop.MaLop
-                     select new
-                     {
-                         sv.MaSV,
-                         sv.HoTen,
-                         sv.GioiTinh,
-                         sv.NgaySinh,
-                         TenLop = lop.TenLop
-                     };
+            var ds = (from sv in db.SinhViens
+                      join lop in db.Lops
+                      on sv.MaLop equals lop.MaLop
+                      select new
+                      {
+                          sv.MaSV,
+                          sv.HoTen,
+                          sv.GioiTinh,
+                          sv.NgaySinh,
+                          TenLop = lop.TenLop
+                      }).ToList();
 
-            dgvSinhVien.DataSource = ds.ToList();
+            dataList = ds.Cast<dynamic>().ToList();
+
+            currentPage = 1;
+            totalPage = (int)Math.Ceiling((double)dataList.Count / pageSize);
+
+            LoadPage();
 
             dgvSinhVien.Columns["MaSV"].HeaderText = "Mã SV";
             dgvSinhVien.Columns["HoTen"].HeaderText = "Họ và tên";
             dgvSinhVien.Columns["GioiTinh"].HeaderText = "Giới tính";
             dgvSinhVien.Columns["NgaySinh"].HeaderText = "Ngày sinh";
             dgvSinhVien.Columns["TenLop"].HeaderText = "Tên lớp";
+        }
+        void LoadPage()
+        {
+            var data = dataList
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            dgvSinhVien.DataSource = data;
+
+            // hiển thị thông tin
+            lblPage.Text = $"Trang {currentPage}/{totalPage} | {data.Count} bản ghi";
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -129,7 +151,7 @@ namespace Quanlysinhvien
                     return;
                 }
 
-                // nếu đổi mã → check trùng
+                
                 if (maSVMoi != maSVCu)
                 {
                     var check = db.SinhViens.Find(maSVMoi);
@@ -150,10 +172,10 @@ namespace Quanlysinhvien
                     MaLop = cbClass.SelectedValue.ToString()
                 };
 
-                // xóa cũ
+                
                 db.SinhViens.Remove(svCu);
 
-                // thêm mới
+                
                 db.SinhViens.Add(svMoi);
 
                 db.SaveChanges();
@@ -180,7 +202,7 @@ namespace Quanlysinhvien
                     return;
                 }
 
-                // xác nhận
+                
                 DialogResult result = MessageBox.Show(
                     "Bạn có chắc muốn xóa?",
                     "Xác nhận",
@@ -191,7 +213,7 @@ namespace Quanlysinhvien
                 if (result == DialogResult.No)
                     return;
 
-                // tìm sinh viên
+                
                 var sv = db.SinhViens.Find(maSV);
 
                 if (sv == null)
@@ -200,7 +222,7 @@ namespace Quanlysinhvien
                     return;
                 }
 
-                // xóa
+               
                 db.SinhViens.Remove(sv);
                 db.SaveChanges();
 
@@ -221,6 +243,70 @@ namespace Quanlysinhvien
             cbGioiTinh.SelectedIndex = -1;
             cbClass.SelectedIndex = -1;
         }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.Trim().ToLower();
+
+            var ds = (from sv in db.SinhViens
+                      join lop in db.Lops
+                      on sv.MaLop equals lop.MaLop
+                      where sv.MaSV.ToLower().Contains(keyword)
+                         || sv.HoTen.ToLower().Contains(keyword)
+                         || lop.TenLop.ToLower().Contains(keyword)
+                      select new
+                      {
+                          sv.MaSV,
+                          sv.HoTen,
+                          sv.GioiTinh,
+                          sv.NgaySinh,
+                          TenLop = lop.TenLop
+                      }).ToList();
+
+            
+            dataList = ds.Cast<dynamic>().ToList();
+
+            
+            currentPage = 1;
+            totalPage = (int)Math.Ceiling((double)dataList.Count / pageSize);
+
+            LoadPage();
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch_Click(sender, e);
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            LoadSinhVien();
+        }
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;
+            LoadPage();
+        }
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadPage();
+            }
+        }
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage < totalPage)
+            {
+                currentPage++;
+                LoadPage();
+            }
+        }
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            currentPage = totalPage;
+            LoadPage();
+        }
+
     }
     
 
