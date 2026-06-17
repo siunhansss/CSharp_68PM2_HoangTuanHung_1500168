@@ -180,6 +180,7 @@
             this.button3.TabIndex = 25;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 

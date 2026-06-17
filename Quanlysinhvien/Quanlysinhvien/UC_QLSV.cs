@@ -168,6 +168,59 @@ namespace Quanlysinhvien
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maSV = txtMaSV.Text.Trim();
+
+                if (string.IsNullOrEmpty(maSV))
+                {
+                    MessageBox.Show("Chưa chọn sinh viên!");
+                    return;
+                }
+
+                // xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc muốn xóa?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.No)
+                    return;
+
+                // tìm sinh viên
+                var sv = db.SinhViens.Find(maSV);
+
+                if (sv == null)
+                {
+                    MessageBox.Show("Không tìm thấy sinh viên!");
+                    return;
+                }
+
+                // xóa
+                db.SinhViens.Remove(sv);
+                db.SaveChanges();
+
+                MessageBox.Show("Xóa thành công!");
+
+                LoadSinhVien();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+        void ClearForm()
+        {
+            txtMaSV.Clear();
+            txtHoTen.Clear();
+            cbGioiTinh.SelectedIndex = -1;
+            cbClass.SelectedIndex = -1;
+        }
     }
     
 
