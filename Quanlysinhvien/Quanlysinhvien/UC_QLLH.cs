@@ -12,6 +12,11 @@ namespace Quanlysinhvien
 {
     public partial class UC_QLLH : UserControl
     {
+        int pageSize = 5;
+        int currentPage = 1;
+        int totalPage = 1;
+
+        List<dynamic> dataList;
         QuanLySinhVienEntities db =
             new QuanLySinhVienEntities();
         public UC_QLLH()
@@ -33,12 +38,42 @@ namespace Quanlysinhvien
                 l.GhiChu
             }).ToList();
 
-            dgvClass.DataSource = ds;
+            dataList = ds.Cast<dynamic>().ToList();
+
+            currentPage = 1;
+            totalPage = (int)Math.Ceiling((double)dataList.Count / pageSize);
+
+            LoadPage();
 
             dgvClass.Columns["ID"].HeaderText = "ID";
             dgvClass.Columns["MaLop"].HeaderText = "Mã lớp";
             dgvClass.Columns["TenLop"].HeaderText = "Tên lớp";
             dgvClass.Columns["GhiChu"].HeaderText = "Ghi chú";
+        }
+        void LoadPage()
+        {
+            var data = dataList
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            dgvClass.DataSource = null;   
+            dgvClass.DataSource = data;
+
+            
+            if (dgvClass.Columns["ID"] != null)
+                dgvClass.Columns["ID"].HeaderText = "ID";
+
+            if (dgvClass.Columns["MaLop"] != null)
+                dgvClass.Columns["MaLop"].HeaderText = "Mã lớp";
+
+            if (dgvClass.Columns["TenLop"] != null)
+                dgvClass.Columns["TenLop"].HeaderText = "Tên lớp";
+
+            if (dgvClass.Columns["GhiChu"] != null)
+                dgvClass.Columns["GhiChu"].HeaderText = "Ghi chú";
+
+            lblPage.Text = $"Trang {currentPage}/{totalPage} | {data.Count} bản ghi";
         }
         void ClearForm()
         {
@@ -149,6 +184,130 @@ namespace Quanlysinhvien
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maLop = txtMaLop.Text.Trim();
+
+                if (string.IsNullOrEmpty(maLop))
+                {
+                    MessageBox.Show("Chưa chọn lớp!");
+                    return;
+                }
+
+                // kiểm tra sinh viên còn thuộc lớp
+                var countSV = db.SinhViens.Count(sv => sv.MaLop == maLop);
+
+                if (countSV > 0)
+                {
+                    MessageBox.Show("Không thể xóa! Lớp vẫn còn sinh viên.");
+                    return;
+                }
+
+                // xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có chắc muốn xóa lớp này?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.No)
+                    return;
+
+                // tìm lớp
+                var lop = db.Lops.Find(maLop);
+
+                if (lop == null)
+                {
+                    MessageBox.Show("Không tìm thấy lớp!");
+                    return;
+                }
+
+                // xóa
+                db.Lops.Remove(lop);
+                db.SaveChanges();
+
+                MessageBox.Show("Xóa thành công!");
+
+                LoadLop();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+            string keyword = txtSearch.Text.Trim().ToLower();
+            int id;
+            bool isNumber = int.TryParse(keyword, out id);
+
+            var ds = db.Lops
+                .Where(l => l.MaLop.ToLower().Contains(keyword)
+                         || (isNumber && l.ID == id)
+                         || l.TenLop.ToLower().Contains(keyword))
+                .Select(l => new
+                {
+                    l.ID,
+                    l.MaLop,
+                    l.TenLop,
+                    l.GhiChu
+                })
+                .ToList();
+
+            dataList = ds.Cast<dynamic>().ToList();
+
+            currentPage = 1;
+            totalPage = (int)Math.Ceiling((double)dataList.Count / pageSize);
+
+            LoadPage();
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch_Click(sender, e);
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            LoadLop();
+        }
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;
+            LoadPage();
+        }
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadPage();
+            }
+        }
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage < totalPage)
+            {
+                currentPage++;
+                LoadPage();
+            }
+        }
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            currentPage = totalPage;
+            LoadPage();
+        }
+
+
+
+
+
+
     }
 
 }

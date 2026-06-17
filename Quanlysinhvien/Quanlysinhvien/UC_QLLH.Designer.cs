@@ -32,7 +32,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblPage = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -40,7 +40,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvClass = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
@@ -65,6 +65,7 @@
             this.button9.TabIndex = 34;
             this.button9.Text = ">";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // button10
             // 
@@ -76,6 +77,7 @@
             this.button10.TabIndex = 33;
             this.button10.Text = ">>";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // button11
             // 
@@ -87,6 +89,7 @@
             this.button11.TabIndex = 32;
             this.button11.Text = "<<";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // button12
             // 
@@ -98,17 +101,18 @@
             this.button12.TabIndex = 31;
             this.button12.Text = "<";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.btnPrev_Click);
             // 
-            // label7
+            // lblPage
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(520, 548);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Trang 1/1 | 2 bản ghi";
+            this.lblPage.AutoSize = true;
+            this.lblPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPage.Location = new System.Drawing.Point(520, 548);
+            this.lblPage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(107, 13);
+            this.lblPage.TabIndex = 30;
+            this.lblPage.Text = "Trang 1/1 | 2 bản ghi";
             // 
             // button8
             // 
@@ -133,6 +137,7 @@
             this.button7.TabIndex = 28;
             this.button7.Text = "Làm mới";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // button6
             // 
@@ -145,6 +150,7 @@
             this.button6.TabIndex = 27;
             this.button6.Text = "Xóa";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -197,13 +203,15 @@
             this.button3.TabIndex = 23;
             this.button3.Text = "Tìm";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // textBox5
+            // txtSearch
             // 
-            this.textBox5.Location = new System.Drawing.Point(303, 41);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(325, 20);
-            this.textBox5.TabIndex = 22;
+            this.txtSearch.Location = new System.Drawing.Point(303, 41);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(325, 20);
+            this.txtSearch.TabIndex = 22;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label6
             // 
@@ -310,7 +318,7 @@
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button12);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblPage);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -318,7 +326,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvClass);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox1);
             this.Name = "UC_QLLH";
@@ -338,7 +346,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblPage;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
@@ -346,7 +354,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dgvClass;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtGhiChu;
