@@ -59,6 +59,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dgvSinhVien);
             this.Name = "FrmSinhVienTheoLop";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "dssinhvien";
             this.Load += new System.EventHandler(this.FrmSinhVienTheoLop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSinhVien)).EndInit();
