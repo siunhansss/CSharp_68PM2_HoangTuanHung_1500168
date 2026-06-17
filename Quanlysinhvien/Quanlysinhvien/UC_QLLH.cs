@@ -302,7 +302,19 @@ namespace Quanlysinhvien
             currentPage = totalPage;
             LoadPage();
         }
+        private void btnViewSV_Click(object sender, EventArgs e)
+        {
+            string maLop = txtMaLop.Text.Trim();
 
+            if (string.IsNullOrEmpty(maLop))
+            {
+                MessageBox.Show("Chưa chọn lớp!");
+                return;
+            }
+
+            FrmSinhVienTheoLop f = new FrmSinhVienTheoLop(maLop);
+            f.ShowDialog();   // mở form
+        }
 
 
 

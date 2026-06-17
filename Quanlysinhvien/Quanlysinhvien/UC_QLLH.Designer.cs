@@ -125,6 +125,7 @@
             this.button8.TabIndex = 29;
             this.button8.Text = "Xem danh sách sinh viên";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.btnViewSV_Click);
             // 
             // button7
             // 
